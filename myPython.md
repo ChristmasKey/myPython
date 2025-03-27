@@ -135,4 +135,15 @@ Python中设置<span style="color:red;">断点</span>与<span style="color:red;"
 
 ![断点与调试](./images/断点与调试.png)
 
-1
+Debug窗口的一些图标及功能：
+
+![Debug窗口的一些功能图标](./images/Debug窗口的一些功能图标.png)
+
+总结：<span style="color:blue;">可以通过Debug调试看到程序执行的顺序</span>。
+
+
+
+### 4、注释
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.videopod.episodes&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=4
+
