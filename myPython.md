@@ -145,5 +145,43 @@ Debug窗口的一些图标及功能：
 
 ### 4、注释
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.videopod.episodes&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=4
+单行注释、多行注释
+
+```python
+# 单行注释
+print("单行注释")
+
+'''
+多行注释（单引号*3）
+'''
+"""
+多行注释（双引号*3）
+"""
+print("多行注释")
+
+'''
+快捷键：
+ctrl + /
+'''
+print("快捷键")
+```
+
+
+
+### 5、输出函数
+
+```python
+# print()方法用于打印输出，是最常见的一个函数
+print("123")
+```
+
+参数：
+
+- *values：值，表示可以一次输出多个对象。输出多个对象时，需要用英文逗号`,`分隔
+- sep：用来间隔多个对象，默认值是一个空格
+- end：用来设定以什么结尾，默认值是换行符`\n`，可以换成其他字符串
+
+```python
+print("Spring", "is", "coming", sep="_", end="!")
+```
 
