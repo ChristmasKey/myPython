@@ -1,5 +1,8 @@
-print("Spring", "is", "coming", sep="_", end="!\n")
-num1 = 3
-num2 = 10
-total = num1 + num2
-print(num1, num2, total)
+a = 1.2
+print("%f" % a)
+b = 1.23
+print("%f" % b)
+
+print("%.4f" % 1.23)
+
+print("abc%%" % ())
