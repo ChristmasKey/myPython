@@ -414,7 +414,136 @@ print(r"python\r\t")
 
 
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=13
+字符串常用函数
+
+![字符串的常用操作函数](./images/字符串的常用操作函数.png)
+
+```python
+"""
+find()函数：检测字符串中是否包含指定的子字符串，包含则返回该子字符串的开始位置的下标，否则返回-1
+find(子字符串, 开始位置下标, 结束位置下标)
+index()函数与find()函数的作用是一样的，区别是：当index()函数没有找到指定目标时不会返回-1，而是直接报错
+index(子字符串, 开始位置下标, 结束位置下标)
+注意：开始、结束位置下标可以省略，表示在整个字符串中查找；同样遵循“包前不包后”规则
+"""
+content = "python is a good language"
+print(content.find("a"))  # 10
+print(content.find("a", 8))  # 10
+print(content.find("a", 8, 12))  # 10
+print(content.find("python"))  # 0
+print(content.find("java"))  # -1
+print(content.find("python", 1))  # -1
+content2 = "我命油我不油天"
+print(content2.index("命"))  # 1
+# print(content2.index("命", 2))  # 直接报错
+
+"""
+count()函数：计算某个子字符串在字符串中出现的次数，未出现则返回0
+count(子字符串, 开始位置下标, 结束位置下标)
+注意：开始、结束位置下标可以省略，表示在整个字符串中查找；同样遵循“包前不包后”规则
+"""
+content3 = "bingbing"
+print(content3.count("b"))  # 2
+print(content3.count("a"))  # 0
+print(content3.count("b", 1))  # 1
+print(content3.count("b", 1, 3))  # 0
+
+"""
+replace()函数：将字符串中的某个子字符串替换成另一个子字符串
+replace(被替换的子字符串, 替换后的子字符串, 替换次数)
+注意：
+替换次数可以省略，表示替换所有匹配的子字符串；
+替换次数: 通过指定 count 参数，可以控制替换的次数，避免过度替换；
+大小写敏感: 替换操作是大小写敏感的，即 "Hello" 和 "hello" 会被视为不同的字符串；
+原字符串不会被修改: replace 方法返回一个新的字符串，原字符串保持不变；
+"""
+content4 = "java is a good language java"
+print(content4.replace("java", "python"))  # python is a good language python
+print(content4.replace("java", "python", 1))  # python is a good language java
+print(content4.replace("Java", "python"))  # java is a good language java
+print(content4)  # java is a good language java
+
+"""
+split()函数：将字符串按照指定的分隔符进行分割，返回一个列表
+split(分隔符, 分割次数)
+注意：
+分隔符：如果不指定分隔符，split() 函数会使用空白字符作为分隔符。如果字符串中没有空白字符，则返回包含整个字符串的列表；
+最大分割次数：split() 方法还有一个可选参数 maxsplit，用于指定最大分割次数。如果不指定，则使用默认值，即分割所有可能的子字符串；
+返回类型：split() 方法返回一个列表，其中包含分割后的子字符串；
+"""
+text = "Hello,World,Python"
+parts = text.split(',')
+print(parts)  # 输出: ['Hello', 'World', 'Python']
+parts = text.split(',', 1)  # 指定最大分割次数为1，即只分割一次
+print(parts)  # 输出: ['Hello', 'World,Python']
+```
+
+![字符串的常用操作函数2](./images/字符串的常用操作函数2.png)
+
+```python
+"""
+capitalize()函数：将字符串的第一个字符转换为大写，其余字母转换为小写；
+注意：
+这个函数不会改变原始字符串，而是返回一个新的字符串；
+如果字符串的第一个字符不是字母，capitalize 函数不会改变它，而是将字符串的其余部分转换为小写；
+"""
+text = "hello World"
+print(text.capitalize())  # Hello world
+print(text)  # hello World
+content = "123Abc"
+print(content.capitalize())  # 123abc
+
+"""
+startswith()函数：检查字符串是否以指定的前缀开头；如果字符串以指定的前缀开头，则返回True，否则返回False；
+startswith(指定前缀, 开始位置下标, 结束位置下标)
+注意：
+如果设置开始、结束位置下标，则在指定范围内检查；
+开始、结束位置下标可以省略，表示在整个字符串开头查找；同样遵循“包前不包后”规则；
+"""
+text2 = "hi, python"
+print(text2.startswith("h"))  # True
+print(text2.startswith("H"))  # False
+print(text2.startswith("p", 4))  # True
+print(text2.startswith("py", 4, 5))  # False
+
+"""
+endswith()函数：检查字符串是否以指定的后缀结尾；如果字符串以指定的后缀结尾，则返回True，否则返回False；
+endswith(指定后缀, 开始位置下标, 结束位置下标)
+注意：
+如果设置开始、结束位置下标，则在指定范围内检查；
+开始、结束位置下标可以省略，表示在整个字符串结尾查找；同样遵循“包前不包后”规则；
+"""
+text3 = "Spring is coming soon"
+print(text3.endswith("soon"))  # True
+print(text3.endswith("Soon"))  # False
+print(text3.endswith("ing", 0, 5))  # False
+print(text3.endswith("ing", 0, 6))  # True
+
+"""
+isupper()函数：检查字符串中的所有字符是否都是大写字母；如果是，则返回True，否则返回False；
+注意：空字符串返回False；非字母字符不会影响结果；
+"""
+text4 = "HELLO"
+print(text4.isupper())  # True
+print("hello".isupper())  # False
+print("".isupper())  # False
+print("123".isupper())  # False
+print("123Abc".isupper())  # False
+print("123ABC".isupper())  # True
+
+"""
+upper()函数：将字符串中的所有小写字母转换为大写字母；
+lower()函数：将字符串中的所有大写字母转换为小写字母；
+"""
+text5 = "hello"
+print(text5.upper())  # HELLO
+print(text5.lower())  # hello
+text6 = "Hello"
+print(text6.upper())  # HELLO
+print(text6.lower())  # hello
+```
+
+
 
 
 
@@ -838,3 +967,62 @@ decodeContentUtf8 = encodeContentUtf8.decode('utf-8')
 print(decodeContentUtf8, type(decodeContentUtf8))
 ```
 
+
+
+### 17、列表
+
+**定义：**列表是 处理一组有序项目的 数据结构。
+
+**格式**：列表名 = [元素1, 元素2, 元素3, 元素4...]
+
+<span style="color:red;">注意：一个列表中的数据类型可以各不相同。</span>
+
+```python
+list1 = [1, "2", 3.0, 4]
+print(list1, type(list1))
+# 列表也可以进行切片操作
+print(list1[0])
+print(list1[1:3])
+# 列表是可迭代对象，可以进行循环遍历操作
+for i in list1:
+    print(i)
+```
+
+![列表的相关操作函数](./images/列表的相关操作函数.png)
+
+```python
+"""
+添加列表元素
+append(element)：用于在列表的末尾添加单个元素，该函数会直接修改原列表，而不会返回新的列表；
+extend(iterable)：用于将另一个可迭代对象（如列表、元组、字符串等）中的所有元素添加到当前列表的末尾；
+注意：
+    该函数会直接修改原列表，而不会返回新的列表；
+    如果传入的参数不是可迭代对象，会引发TypeError；
+    该函数不会添加嵌套的可迭代对象中的元素，而是将整个可迭代对象作为一个单独的元素添加到列表中；
+insert(index, element)：用于在列表（list）中插入元素。这个函数可以指定插入的位置，使得新元素插入到列表的指定索引处，而其他元素相应地向后移动；
+注意：
+    该函数会直接修改原列表，而不会返回新的列表；
+    如果指定的索引超出了列表的范围，会引发IndexError；
+    如果指定的索引是负数，则表示从列表的末尾开始计数，-1 表示最后一个元素，-2 表示倒数第二个元素，以此类推；
+    可以一次性插入多个元素，只需在 element 参数中传入一个可迭代对象（如列表、元组等）；
+"""
+list1 = [1, 2, 3]
+print(list1)
+# append()：在列表末尾添加元素
+list1.append(4)
+print(list1)
+# extend()：在列表末尾添加可迭代对象中的所有元素
+list1.extend([5, 6])
+print(list1)
+list1.extend([7, [8, 9]])
+print(list1)
+# insert()：在列表中插入元素
+list1.insert(0, 0)
+print(list1)
+
+
+```
+
+
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=14

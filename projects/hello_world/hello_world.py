@@ -1,14 +1,28 @@
-print("python"[1:3])
-# 定义一个字符串变量，值为26个英文字母
-letters = "abcdefghijklmnopqrstuvwxyz"
-print(letters[0:26:2])
-print(letters[-1:-27:-2])
-print(letters[::-1])
-print(letters[:3])
-print(letters[3:])
-# 运行结果如下
-# acegikmoqsuwy
-# zxvtrpnljhfdb
-# zyxwvutsrqponmlkjihgfedcba
-# abc
-# defghijklmnopqrstuvwxyz
+"""
+添加列表元素
+append(element)：用于在列表的末尾添加单个元素，该函数会直接修改原列表，而不会返回新的列表；
+extend(iterable)：用于将另一个可迭代对象（如列表、元组、字符串等）中的所有元素添加到当前列表的末尾；
+注意：
+    该函数会直接修改原列表，而不会返回新的列表；
+    如果传入的参数不是可迭代对象，会引发TypeError；
+    该函数不会添加嵌套的可迭代对象中的元素，而是将整个可迭代对象作为一个单独的元素添加到列表中；
+insert(index, element)：用于在列表（list）中插入元素。这个函数可以指定插入的位置，使得新元素插入到列表的指定索引处，而其他元素相应地向后移动；
+注意：
+    该函数会直接修改原列表，而不会返回新的列表；
+    如果指定的索引超出了列表的范围，会引发IndexError；
+    如果指定的索引是负数，则表示从列表的末尾开始计数，-1 表示最后一个元素，-2 表示倒数第二个元素，以此类推；
+    可以一次性插入多个元素，只需在 element 参数中传入一个可迭代对象（如列表、元组等）；
+"""
+list1 = [1, 2, 3]
+print(list1)
+# append()：在列表末尾添加元素
+list1.append(4)
+print(list1)
+# extend()：在列表末尾添加可迭代对象中的所有元素
+list1.extend([5, 6])
+print(list1)
+list1.extend([7, [8, 9]])
+print(list1)
+# insert()：在列表中插入元素
+list1.insert(0, 0)
+print(list1)
