@@ -1052,8 +1052,111 @@ print("c" not in list3)
 list4 = ["aa", "bb", "cc", "aa", "dd"]
 print(list4.index("dd"))
 print(list4.count("aa"))
+
+"""
+删除列表元素：
+del：删除列表中的指定元素或切片；
+pop(index)：删除并返回指定索引处的元素，如果未指定索引，则删除并返回列表中的最后一个元素；
+remove(element)：删除列表中第一次出现的指定元素，如果元素不存在，则引发ValueError；
+clear()：删除列表中的所有元素；
+"""
+list5 = ["a", "b", "c", "d"]
+del list5[0]  # 根据下标删除元素
+del list5[0:2]  # 根据下标范围删除元素
+print(list5)
+# del list5  # 删除整个列表
+# print(list5)  # 报错，list5不存在
+
+list6 = ["a", "b", "c", "d", "e"]
+temp1 = list6.pop()  # 默认删除并返回最后一个元素
+print(temp1)
+print(list6)
+temp2 = list6.pop(0)  # 删除并返回指定下标的元素
+print(temp2)
+print(list6)
+# temp3 = list6.pop(9)  # 报错，超出索引范围
+# print(temp3)
+
+list7 = ["a", "b", "c", "d", "a"]
+list7.remove("a")  # 删除第一个匹配的元素
+print(list7)
+# list7.remove("z")  # 报错，元素不存在
+
+list7.clear()  # 清空列表
+print(list7)  # []
+
+"""
+列表元素排序：
+sort()：对列表中的元素进行排序，默认是升序排序；
+reverse()：反转列表中元素的顺序；
+"""
+list8 = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+list8.sort()
+print(list8)
+list8.reverse()
+print(list8)
+# list8.sort(reverse=True)  # 降序排序
+# print(list8)
 ```
 
 
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=14
+#### 列表推导式
+
+```python
+# 基本写法：
+# [表达式 for 变量 in 列表]
+# [表达式 for 变量 in 列表 if 条件]
+
+"""
+列表推导式：
+列表推导式是一种简洁的创建列表的方式，它可以在一行代码中生成一个列表，而不需要使用循环语句。
+列表推导式的基本语法是：[expression for item in iterable if condition]
+其中，
+    expression 是一个表达式，用于生成列表中的元素；item 是可迭代对象中的元素；
+    iterable 是一个可迭代对象，如列表、元组、字符串、range()函数等；
+    condition 是一个可选的条件表达式，用于筛选满足条件的元素。
+"""
+nums1 = [1, 2, 3, 4, 5]
+[print(i) for i in nums1]  # 列表推导式打印列表中的元素
+
+nums2 = []
+# 循环写法
+# for i in range(1, 6):
+#     nums2.append(i)
+# print(nums2)
+# 列表推导式写法
+[nums2.append(i) for i in range(1, 6)]
+print(nums2)
+
+# 将1到10以内的奇数放进nums3列表中
+nums3 = []
+[nums3.append(i) for i in range(1, 11) if i % 2 != 0]
+print(nums3)
+```
+
+
+
+#### 列表嵌套
+
+```python
+"""
+列表嵌套：
+列表嵌套是指在一个列表中包含另一个列表，即列表中的元素也是列表。
+列表嵌套可以用于表示多维数据，如矩阵、二维数组等。
+"""
+list9 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(list9[1])
+print(list9[1][2])  # 输出6
+# 遍历列表中的每个元素
+for i in list9:
+    print(i)
+# 遍历列表中的每个元素，并输出每个元素中的每个值
+for i in list9:
+    for j in i:
+        print(j)
+```
+
+
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=15
