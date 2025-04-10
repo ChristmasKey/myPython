@@ -1304,14 +1304,84 @@ dic4 = {
     "gender": "男"
 }
 temp = dic4.popitem()
-print(temp)
+print(temp)  # ('gender', '男')
+print(type(temp))  # tuple
 print(dic4)
 ```
 
 ![字典的常见操作2](./images/字典的常见操作2.png)
 
 ```python
+"""
+字典操作：求长度（字典中键值对的数量）
+len(变量名)
+len()函数不仅可以用来计算字典的长度，还可以计算列表、字符串的长度
+"""
+dic5 = {
+    "name": "张三",
+    "age": 18,
+    "gender": "男",
+    "tel": "123456"
+}
+print(len(dic5))  # 4
+print(len("hello world"))  # 11
+print(len([1, 2, 3, 4, 5]))  # 5
 
+"""
+字典操作：获取字典中所有键值对的键名
+变量名.keys()
+keys()函数返回的是一个视图对象，它是动态的，当字典中的键发生变化，视图对象也会相应地更新
+"""
+dic5_keys = dic5.keys()
+print(dic5_keys)  # dict_keys(['name', 'age', 'gender', 'tel'])
+dic5.pop("gender")
+print(dic5_keys)  # dict_keys(['name', 'age', 'tel'])
+# 将视图对象转换为列表
+print(list(dic5_keys))  # ['name', 'age', 'tel']
+# 循环打印dic5的所有键名
+# 写法1
+for key in dic5_keys:
+    print(key)
+# 写法2
+for key in dic5:
+    print(key)
+
+"""
+字典操作：获取字典中所有键值对的值
+变量名.values()
+与keys()函数一样，values()函数也返回的是一个动态的视图对象
+"""
+dic6 = {
+    "name": "张三",
+    "age": 18,
+    "gender": "男",
+    "tel": "123456"
+}
+dic6_values = dic6.values()
+print(dic6_values)  # dict_values(['张三', 18, '男', '123456'])
+dic6["name"] = "李四"
+print(dic6_values)  # dict_values(['李四', 18, '男', '123456'])
+# 循环打印dic6的所有值
+for value in dic6_values:
+    print(value)
+
+"""
+字典操作：获取字典中所有键值对
+变量名.items()
+与keys()函数和values()函数一样，items()函数也返回的是一个动态的视图对象，
+在这个视图对象中，每个键值对以元组的形式存在
+"""
+dic7 = {
+    "name": "张三",
+    "age": 18,
+    "gender": "男",
+    "tel": "123456"
+}
+dic7_items = dic7.items()
+print(dic7_items)  # dict_items([('name', '张三'), ('age', 18), ('gender', '男'), ('tel', '123456')])
+# 循环打印dic7的所有键值对
+for item in dic7_items:
+    print(item, type(item))  # ('name', '张三') <class 'tuple'>
 ```
 
 
