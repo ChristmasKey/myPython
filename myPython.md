@@ -1550,4 +1550,13 @@ print(set1 == set2)  # 判断两个集合是否相等
 
 ### 21、类型转换
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=17
+![类型转换](./images/类型转换.png)
+
+```python
+```
+
+https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=17
+
+语法糖
+
+https://www.bilibili.com/video/BV1Nf4y1k7Pu/?spm_id_from=333.337.search-card.all.click&vd_source=71b23ebd2cd9db8c137e17cdd381c618
