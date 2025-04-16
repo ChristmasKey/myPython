@@ -52,3 +52,27 @@ print(eval("10+10"))
 # eval()函数也可以将字符串中的数字转成数值类型
 print(eval("10.5"))
 # eval()函数也可以实现list、dict、tuple和str类型之间的转换
+list_str = "[[1,2],[3,4],[5,6]]"
+print(type(list_str))
+list_val = eval(list_str)
+print(type(list_val))
+
+dict_str = "{'name': 'Tom', 'age': 18}"
+dict_val = eval(dict_str)
+print(type(dict_val))
+
+tuple_str = "('a', 'b', 'c')"
+tuple_val = eval(tuple_str)
+print(type(tuple_val))
+# eval()函数在执行字符串中的表达式时，如果字符串中存在恶意代码，会带来安全风险
+
+"""
+类型转换：list() 将一个可迭代对象转换成列表
+支持的类型：str, tuple, dict, set, range
+"""
+print(list("abcde"))
+print(list((1, 2, 3, 4)))
+print(list({"name": "Tom", "age": 18}))  # 转换后的列表中，元素是字典的键值对
+print(list({1, 2, 3, 4}))  # 转换后的列表中，元素是集合中的元素
+print(list({"a", "b", "c", "a"}))  # 集合转换成列表，会先去重，再转换
+print(list(range(1, 5)))
