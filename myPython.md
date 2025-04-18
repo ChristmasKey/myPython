@@ -1633,8 +1633,68 @@ print(list({"a", "b", "c", "a"}))  # 集合转换成列表，会先去重，再�
 print(list(range(1, 5)))
 ```
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=18
 
-语法糖
+
+### 22、深浅拷贝
+
+<span style="color:red;">赋值：a = b，a和b指向同一个对象，修改a会影响到b，修改b也会影响到a，a和b指向同一个内存地址</span>
+
+```python
+list1 = [1, 2, 3, 4]
+list2 = list1
+print("list1", list1)
+print("list2", list2)
+# 给list1新增一个元素
+list1.append(5)
+print("new list1", list1)
+print("new list2", list2)
+```
+
+有时候我们需要**保留数据的原始内容，再对数据进行处理**，此时赋值显然无法做到，因此Python中提供了两种方法：
+
+**浅拷贝**：会创建一个新的对象，拷贝第一层的数据，深层次的数据还是会指向原来的内存地址；（**数据半共享**）
+
+```python
+# 需要导入copy模块
+import copy
+
+# 定义一个嵌套列表list1
+list1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# 将list1浅拷贝给list2
+list2 = copy.copy(list1)
+print("list1", list1)
+print("list2", list2)
+# 查看list1、list2的内存地址：地址值不同，说明不是同一个对象
+print("list1的内存地址", id(list1))
+print("list2的内存地址", id(list2))
+# 查看list1、list2的嵌套列表的内存地址：地址值相同，说明是同一个对象
+print("list1的嵌套列表的内存地址", id(list1[0]))
+print("list2的嵌套列表的内存地址", id(list2[0]))
+# 给list1添加一个元素后再查看list1、list2的值
+list1.append(10)
+print("list1", list1)
+print("list2", list2)
+# 给list2的嵌套列表添加一个元素后再查看list1、list2的值
+list2[0].append(11)
+print("list1", list1)
+print("list2", list2)
+
+# 优点：拷贝速度快、占用空间少、拷贝效率高
+```
+
+**深拷贝**：外层的对象和内部的元素都拷贝了一份；（数据全共享）
+
+```python
+
+```
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.videopod.episodes&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=18
+
+## 语法糖
+
+```python
+```
+
+
 
 https://www.bilibili.com/video/BV1Nf4y1k7Pu/?spm_id_from=333.337.search-card.all.click&vd_source=71b23ebd2cd9db8c137e17cdd381c618
