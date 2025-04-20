@@ -1637,7 +1637,7 @@ print(list(range(1, 5)))
 
 ### 22、深浅拷贝
 
-<span style="color:red;">赋值：a = b，a和b指向同一个对象，修改a会影响到b，修改b也会影响到a，a和b指向同一个内存地址</span>
+<span style="color:red;">赋值：a = b，a和b指向同一个对象，修改a会影响到b，修改b也会影响到a，a和b指向同一个内存地址（**数据全共享**）</span>
 
 ```python
 list1 = [1, 2, 3, 4]
@@ -1682,13 +1682,100 @@ print("list2", list2)
 # 优点：拷贝速度快、占用空间少、拷贝效率高
 ```
 
-**深拷贝**：外层的对象和内部的元素都拷贝了一份；（数据全共享）
+**深拷贝**：外层的对象和内部的元素都拷贝了一份；（数据独立，不共享）
 
 ```python
+# 需要导入copy模块
+import copy
 
+# 定义一个嵌套列表list1
+list1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# 将list1深拷贝给list2
+list2 = copy.deepcopy(list1)
+print("list1", list1)
+print("list2", list2)
+# 查看list1、list2的内存地址：地址值不同，说明不是同一个对象
+print("list1的内存地址", id(list1))
+print("list2的内存地址", id(list2))
+# 查看list1、list2的嵌套列表的内存地址：地址值不同，说明不是同一个对象
+print("list1的嵌套列表的内存地址", id(list1[0]))
+print("list2的嵌套列表的内存地址", id(list2[0]))
+# 给list1添加一个元素后再查看list1、list2的值
+list1.append(10)
+print("list1", list1)
+print("list2", list2)
+# 给list2的嵌套列表添加一个元素后再查看list1、list2的值
+list2[0].append(11)
+print("list1", list1)
+print("list2", list2)
+# 深拷贝数据变化只影响自己本身，和原来的对象没有关联
 ```
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.videopod.episodes&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=18
+
+
+### 23、可变对象与不可变对象
+
+**可变对象**：存储空间保存的数据<span style="color:red;">允许</span>被修改，这种数据就是可变类型；
+
+常见的可变类型：列表、字典、集合；
+
+```python
+"""
+可变类型：变量对应的值可以被修改，但是内存地址不会发生改变
+"""
+list_val = [1, 2, 3, 4]
+print("list_val的原内存地址：", id(list_val))
+list_val.append(5)
+print("list_val的现内存地址：", id(list_val))
+# 数据值改变但是地址值不变，说明是一个可变类型
+
+# 按上面的写法，写一个字典类型的demo
+dict_val = {"name": "zhangsan", "age": 18}
+print("dict_val的原内存地址：", id(dict_val))
+dict_val["sex"] = "male"
+print("dict_val的现内存地址：", id(dict_val))
+
+# 按照上面的写法，写一个集合类型的demo
+set_val = {1, 2, 3, 4}
+print("set_val的原内存地址：", id(set_val))
+set_val.add(5)
+print("set_val的现内存地址：", id(set_val))
+```
+
+**不可变对象**：存储空间保存的数据<span style="color:red;">不允许</span>被修改，这种数据就是不可变类型；
+
+常见的不可变类型：数值类型、字符串、元组；
+
+```python
+"""
+不可变类型：变量对应的值不可以被修改，一旦修改，值的内存地址就会改变（会赋予一个新的值并分配对应的内存空间）
+"""
+int_val = 10
+print("int_val的原内存地址：", id(int_val))
+int_val = 20
+print("int_val的现内存地址：", id(int_val))
+# 数据值改变但是地址值也改变，说明是一个不可变类型
+
+str_val = "hello"
+print("str_val的原内存地址：", id(str_val))
+str_val = "world"
+print("str_val的现内存地址：", id(str_val))
+
+tuple_val = (1, 2, 3, 4)
+print("tuple_val的原内存地址：", id(tuple_val))
+tuple_val = (5, 6, 7, 8)
+print("tuple_val的现内存地址：", id(tuple_val))
+```
+
+<b style="color:red;">深浅拷贝的方法只针对可变对象，不可变对象没有拷贝的方法！！！</b>
+
+
+
+### 24、函数
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=19
+
+
 
 ## 语法糖
 
