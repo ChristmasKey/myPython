@@ -1773,7 +1773,38 @@ print("tuple_val的现内存地址：", id(tuple_val))
 
 ### 24、函数
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=19
+**定义**：将具有<span style="color:#4b5cc4;">独立</span>功能的代码块组织成一个整体，使其具有<span style="color:#4b5cc4;">特殊功能</span>的代码集。
+
+**作用**：使用函数可以加强代码的<span style="color:#4b5cc4;">复用性</span>，提高编程的效率。
+
+<b style="color:red;">结构</b>：
+
+```python
+# 定义函数
+def 函数名():
+    函数体
+
+# 调用函数
+函数名()
+```
+
+**注意**：函数名要符合标识符规定，最好见名知意。
+
+**返回值**：函数执行结束后，最后给调用者的一个结果。
+
+**参数**：形参&实参，定义函数时指定的函数参数叫形参，调用函数时传入的函数参数叫实参。
+
+```python
+# 定义格式
+def 函数名(形参a, 形参b):
+    函数体
+    ...(如a = 1  b = 2)
+
+# 调用格式
+函数名(实参a, 实参b)
+```
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=20
 
 
 
