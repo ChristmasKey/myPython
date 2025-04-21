@@ -1867,4 +1867,3 @@ dict_b = {k: v * 2 for k, v in dict_a.items()}
 print(dict_b)
 ```
 
-
