@@ -2,7 +2,8 @@
 函数：
 定义函数用 def 关键字
 函数的返回值用 return 关键字
-函数的参数
+函数的参数：位置参数、默认参数、可变参数、关键字参数
+函数嵌套
 """
 
 
@@ -70,3 +71,32 @@ def arg_fun4(**kwargs):
 arg_fun4(name1="jack", name2="tom", name3="lucy")  # 传值的时候，需要采用“键=值”的形式
 arg_fun4(name1="jack")
 arg_fun4()  # 空字典
+
+
+# 函数嵌套：函数内部可以定义函数，内部函数可以访问外部函数的变量，但外部函数不能访问内部函数的变量
+# 嵌套调用：在一个函数中调用另一个函数
+def func_a():
+    print("funcA")
+
+
+def func_b():
+    func_a()  # 嵌套调用
+    print("funcB")
+
+
+func_b()
+
+
+# 嵌套定义：在一个函数中定义另一个函数
+def func_c():
+    print("funcC")
+
+    # 定义内函数
+    def func_d():
+        # 内层函数无法调用到自身，也无法调用外层函数（会陷入死循环）
+        print("funcD")
+
+    func_d()  # 调用内函数
+
+
+func_c()
