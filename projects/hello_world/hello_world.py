@@ -1,102 +1,32 @@
 """
-函数：
-定义函数用 def 关键字
-函数的返回值用 return 关键字
-函数的参数：位置参数、默认参数、可变参数、关键字参数
-函数嵌套
+作用域：局部变量、全局变量
 """
+# 全局变量
+global_val = 100
 
 
-# 定义函数
-def hello_world():
-    print("Hello World!")
+def func1():
+    print("这是func1中global_val的值：", global_val)
 
 
-hello_world()
+def func2():
+    global_val = 120
+    print("这是func2中global_val的值：", global_val)
 
 
-# 函数的返回值
-def fun1():
-    print("123")
-    return "456"
-    # return "456", "789"  # 当return需要返回多个值，会以元组的形式返回
-    # return  # 如果函数没有return语句或return没有返回值，函数执行完毕后也会返回结果，只是结果为 None
-    # print("789")  # 函数中遇到return语句就会停止执行并返回结果
+print("调用前global_val的值：", global_val)
+func1()
+func2()
+# global_val的值没有被覆盖是因为函数内部如果要使用变量，会先从函数内部寻找，有则直接调用，否则逐层向外寻找。
+print("调用后global_val的值：", global_val)
 
 
-print(fun1())
+# 局部变量
+def func3():
+    local_value = "Stone"
+    print("这是func3中local_value的值：", local_value)
 
 
-# 函数的参数
-# 必备参数（位置参数）：形参和实参的顺序及个数必须一致
-def arg_fun1(arg1, arg2, arg3):
-    print(arg1, arg2, arg3)
-
-
-arg_fun1("jack", "tom", "lucy")
-
-
-# 默认参数（缺省参数）：在定义形参时为其设置缺省值，当实参不传值时默认为缺省值
-# 格式：def 函数名(参数名=默认值):
-# 注意：默认参数必须放在非默认参数后面，无论是函数的定义和调用
-def arg_fun2(arg1, arg2="tom", arg3="lucy"):
-    print(arg1, arg2, arg3)
-
-
-arg_fun2("jack", "tom1", "lucy1")
-arg_fun2("jack", "tom2")
-arg_fun2("jack")
-
-
-# 可变参数：实参的数量是可变的，可以传入0个或多个
-# 格式：def 函数名(*args):
-def arg_fun3(*names):
-    print(names)
-    print(type(names))
-
-
-arg_fun3("jack", "tom", "lucy")
-arg_fun3("jack")
-arg_fun3()
-
-
-# 关键字参数：实参以键值对的形式传入
-# 格式：def 函数名(**kwargs):
-# 作用：可以扩展函数的功能，如登录接口的选填数据就可以使用关键字参数来接收
-def arg_fun4(**kwargs):
-    print(kwargs)
-    print(type(kwargs))  # 以字典形式接收参数
-
-
-arg_fun4(name1="jack", name2="tom", name3="lucy")  # 传值的时候，需要采用“键=值”的形式
-arg_fun4(name1="jack")
-arg_fun4()  # 空字典
-
-
-# 函数嵌套：函数内部可以定义函数，内部函数可以访问外部函数的变量，但外部函数不能访问内部函数的变量
-# 嵌套调用：在一个函数中调用另一个函数
-def func_a():
-    print("funcA")
-
-
-def func_b():
-    func_a()  # 嵌套调用
-    print("funcB")
-
-
-func_b()
-
-
-# 嵌套定义：在一个函数中定义另一个函数
-def func_c():
-    print("funcC")
-
-    # 定义内函数
-    def func_d():
-        # 内层函数无法调用到自身，也无法调用外层函数（会陷入死循环）
-        print("funcD")
-
-    func_d()  # 调用内函数
-
-
-func_c()
+func3()
+# 局部变量的作用：在函数体中临时保存数据，当函数被调用完之后，就会销毁局部变量
+# print("这是func3中local_value的值：", local_value)  # NameError: name 'local_value' is not defined

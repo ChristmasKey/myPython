@@ -1933,15 +1933,53 @@ func_c()
 
 ### 25、作用域
 
-含义：指的是变量生效的范围，分为两种：局部变量、全局变量
+含义：指的是变量生效的范围，分为两种：全局变量、局部变量
 
-- 局部变量：
 - 全局变量：函数外部定义的变量，在整个文件中都是有效的；
+- 局部变量：函数内部定义的变量，只在定义的函数体中有效；
+
+<span style="color:red;">注意：</span>
+
+- 函数间不能共享内部定义的变量
+- 函数中可以使用全局变量
 
 ```python
+"""
+作用域：局部变量、全局变量
+"""
+# 全局变量
+global_val = 100
+
+
+def func1():
+    print("这是func1中global_val的值：", global_val)
+
+
+def func2():
+    global_val = 120
+    print("这是func2中global_val的值：", global_val)
+
+
+print("调用前global_val的值：", global_val)
+func1()
+func2()
+# global_val的值没有被覆盖是因为函数内部如果要使用变量，会先从函数内部寻找，有则直接调用，否则逐层向外寻找。
+print("调用后global_val的值：", global_val)
+
+
+# 局部变量
+def func3():
+    local_value = "Stone"
+    print("这是func3中local_value的值：", local_value)
+
+
+func3()
+# 局部变量的作用：在函数体中临时保存数据，当函数被调用完之后，就会销毁局部变量
+# print("这是func3中local_value的值：", local_value)  # NameError: name 'local_value' is not defined
+
 ```
 
-
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=21
 
 
 
