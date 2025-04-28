@@ -2015,9 +2015,62 @@ def fun6():
 
 
 fun6()
+
+
+# 如何在函数体内部定义多个全局变量：用英文逗号分隔
+def fun7():
+    global name1, name2
+    name1 = "Python基础"
+    name2 = "Python进阶"
+    print(f"正在学习的课程名称：{name1}和{name2}")
+
+
+fun7()
+print(name1, name2)
+
+"""
+nonlocal关键字：用来在嵌套函数中声明外层的局部变量
+注意：nonlocal只能对上一级嵌套函数中的变量进行修改
+"""
+a = 10
+
+
+def outer():
+    a = 5
+
+    def inner():
+        # nonlocal a  # 声明外层的局部变量
+        a = 20
+
+        def inner2():
+            nonlocal a  # 声明外层的局部变量
+            a = 30
+            print("inner2函数中a的值：", a)
+
+        inner2()
+        print("inner函数中a的值：", a)
+
+    inner()
+    print("outer函数中a的值：", a)
+
+
+outer()
+print("全局变量a的值：", a)
 ```
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=21
+
+
+### 26、匿名函数
+
+**定义格式**：函数名 = lambda 形参 : 返回值
+
+<span style="color:red;">lambda</span> 是定义匿名函数的关键字，相当于定义函数的关键字 def。
+
+**调用格式**：结果 = 函数名 (实参)
+
+```python
+
+```
 
 
 

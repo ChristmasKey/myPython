@@ -69,4 +69,43 @@ def fun6():
 
 fun6()
 
-# 如何在函数体内部定义多个全局变量
+
+# 如何在函数体内部定义多个全局变量：用英文逗号分隔
+def fun7():
+    global name1, name2
+    name1 = "Python基础"
+    name2 = "Python进阶"
+    print(f"正在学习的课程名称：{name1}和{name2}")
+
+
+fun7()
+print(name1, name2)
+
+"""
+nonlocal关键字：用来在嵌套函数中声明外层的局部变量
+注意：nonlocal只能对上一级嵌套函数中的变量进行修改
+"""
+a = 10
+
+
+def outer():
+    a = 5
+
+    def inner():
+        # nonlocal a  # 声明外层的局部变量
+        a = 20
+
+        def inner2():
+            nonlocal a  # 声明外层的局部变量
+            a = 30
+            print("inner2函数中a的值：", a)
+
+        inner2()
+        print("inner函数中a的值：", a)
+
+    inner()
+    print("outer函数中a的值：", a)
+
+
+outer()
+print("全局变量a的值：", a)
