@@ -2113,9 +2113,29 @@ print(var_param(1, 2, 3, 4, 5))
 # 5.关键字参数
 key_param = lambda **kwargs: kwargs
 print(key_param(name="张三", age=18))
+
+"""
+lambda应用：结合if判断
+"""
+num_comp = lambda x, y: x if x > y else y
+print(num_comp(1, 2))
+# 简单的逻辑推荐使用lambda；逻辑复杂的代码则不推荐，降低了代码的可读性，增加了维护难度
 ```
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=22
+
+
+### 27、内置函数
+
+![内置函数1](./images/内置函数1.png)
+
+---
+
+![内置函数2](./images/内置函数2.png)
+
+```python
+```
+
+https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=22
 
 
 
