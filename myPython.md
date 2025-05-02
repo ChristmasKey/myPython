@@ -2233,6 +2233,160 @@ print(c)  # 输出：5
 
 
 
+### 29、异常&异常处理
+
+异常是程序执行过程中出现的非正常流程现象。
+
+针对程序出现的异常现象要制定合理有效的处理方案，不仅要避免异常现象的出现，还要在异常出现后设计针对性的有效处理方案。
+
+<span style="color:red;">异常处理的最终目的：让程序在出现异常时，仍然能够正常运行。</span>
+
+**语法格式**：
+
+```python
+# 格式一
+try:
+	可能引发异常现象的代码
+    
+except [异常类型]:
+    出现异常现象的处理代码
+
+# 格式二
+try:
+    可能引发异常现象的代码
+except [异常类型]:
+    出现异常现象的处理代码
+else:
+    没有异常时执行的代码
+
+# 格式三
+try:
+    可能引发异常现象的代码
+except [异常类型]:
+    出现异常现象的处理代码
+finally:
+    异常处理结束后继续执行的代码
+
+# 格式四
+try:
+    可能引发异常现象的代码
+except [异常类型]:
+    出现异常现象的处理代码
+else:
+    没有异常时执行的代码
+finally：
+	异常处理结束后继续执行的代码
+```
+
+**示例代码**：
+
+```python
+# 异常处理语法格式一
+# 具体异常
+try:
+    print(a)
+except NameError as e:
+    print('NameError:', e)
+
+# 通用异常
+try:
+    print(1 / 0)
+except Exception as e:
+    print('Error')
+
+# 多分支异常
+try:
+    print(1 / 0)
+except NameError as e:
+    print('NameError:', e)
+except Exception as e:
+    print('Error:', e)
+except ZeroDivisionError as e:
+    print('ZeroDivisionError:', e)
+
+# 异常处理语法格式二
+dict_value = {
+    'name': '张三',
+}
+try:
+    print(dict_value["age"])
+except Exception as e:
+    print('Error:', e)
+else:
+    print('没有异常')
+
+# 异常处理语法格式三
+try:
+    print(1 / 0)
+except Exception as e:
+    print('Error:', e)
+finally:
+    print('无论是否发生异常，都会执行')
+
+# 异常处理语法格式四
+try:
+    num = int(input('请输入一个整数:'))
+    print(10 / num)
+except ValueError as e:
+    print('请输入正确的数据')
+except Exception as e:
+    print('未知错误 %s' % e)
+else:
+    print('没有异常')
+finally:
+    print('无论是否发生异常，都会执行')
+```
+
+**抛出异常**：
+
+```python
+"""
+抛出异常：使用raise语句抛出一个指定的异常
+raise [Exception [, args [, traceback]]]
+Exception：异常类型，例如：ZeroDivisionError，ValueError等
+args：异常参数，字符串类型，如果存在，则必须传入一个参数，如果不存在，则可以不传入参数
+traceback：用于跟踪异常的传播路径
+"""
+def login():
+    pwd = str(input("请输入您的密码"))
+    if len(pwd) >= 6:
+        print('密码输入正确')
+    else:
+        raise Exception('密码长度不能小于6位')
+# 捕捉抛出的异常
+try:
+    login()
+except Exception as e:
+    print(e)
+print(1234)
+```
+
+
+
+### 30、模块
+
+**含义**：在Python中，一个py文件就是一个模块，里面定义了一些函数和变量，需要的时候可以导入并使用这些模块。
+
+**分类**：
+
+- 内置模块：例如`random`、`time`、`os`、`logging`等，直接导入即可使用
+- 三方模块：需要cmd命令 `pip install 模块名` 下载使用【`pip list` 查看已下载的模块列表，`pip uninstall 模块名` 卸载模块】
+- 自定义模块：自定义模块的名称要遵守标识符规定及变量的命名规范，并且不能与内置模块产生冲突
+
+**导入使用**：
+
+```python
+# 导入方式一
+import 模块名
+
+# 导入方式二：从模块中导入指定的部分
+from ... import ...
+```
+
+https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=24
+
+
+
 
 
 ## 语法糖
