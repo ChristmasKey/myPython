@@ -15,7 +15,8 @@ zip()   拉链函数：将可迭代的对象作为参数，将对象中对应的
 map()   映射函数：将指定的函数依次作用在给定序列的每个元素上，返回一个可迭代对象；
         参数：map(function, iteration)，function为自定义的函数，iteration为可迭代对象；
 
-reduce()
+reduce()对序列进行累计（从左到右）；需要导入functools模块
+        参数：reduce(function, sequence[, initial])，function为自定义的函数，sequence为可迭代对象，initial为可选参数，表示初始值；
 """
 # 查看所有的内置函数（首字母大写的多为内置常量，首字母小写的多为内置函数）
 import builtins
@@ -35,3 +36,17 @@ print(list(zip(list1, list2)))
 # 如果元素个数不一致，则按照最短长度匹配元祖
 
 # 映射函数
+list3 = [1, 2, 3]
+
+
+def add_one(x):
+    return x + 1
+
+
+print(list(map(add_one, list3)))
+
+# reduce函数
+from functools import reduce
+
+list4 = [1, 2, 3, 4]
+print(reduce(lambda x, y: x + y, list4, 1))
