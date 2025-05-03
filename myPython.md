@@ -2381,11 +2381,117 @@ import 模块名
 
 # 导入方式二：从模块中导入指定的部分
 from ... import ...
+
+# 导入方式三：从模块中导入全部
+from ... import *
+
+# 模块&功能别名
+import 模块名 as 别名
+from 模块名 import 功能 as 别名
 ```
 
-https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=24
+**示例代码**：
+
+```python
+# 模块导入方式一
+import modules.myModule1 as myModule1
+# 多模块导入
+# import modules.myModule1 as myModule1, modules.myModule2 as myModule2
+
+print(myModule1.name)
+myModule1.funa()
+
+# 模块导入方式二
+from modules.myModule2 import random_num, print_info
+print(random_num())
+print_info('张三', 18)
+
+# 模块导入方式三
+from modules.myModule2 import *
+print(random_num())
+print_info('李四', 20)
+```
+
+modules下的模块代码：
+
+![自定义模块](./images/自定义模块.png)
+
+```python
+# myModule1
+print("第一个自定义模块被调用了")
+
+# 定义变量
+name = 'Stone'
+
+def funa():
+    print('这是第一个自定义模块的函数')
 
 
+# myModule2
+# 定义一个随机数函数
+import random
+
+
+def random_num():
+    return random.randint(1, 100)
+
+
+# 定义一个打印函数
+def print_info(name, age):
+    print(f'姓名：{name}，年龄：{age}')
+```
+
+
+
+#### 内置全局变量
+
+<span style="color:red;">`__name__` 是一个特殊的内置变量，它用于确定当前模块是如何被调用的。</span>
+
+- 如果当前模块是被直接运行的，那么`__name__`的值会被设为 '\__main__'。
+- 如果当前模块是被导入到其他模块中，那么`__name__`的值会是该模块的名字（也就是不包含 .py 扩展名的文件名）。
+
+这个特性通常被用来在模块中添加可选的行为，例如，只有当模块被直接运行时才执行某些代码，而当模块被导入时则不执行这些代码。
+
+```python
+# myModule1中的代码
+print("第一个自定义模块被调用了")
+
+# 定义变量
+name = 'Stone'
+
+
+def funa():
+    print('这是第一个自定义模块的函数')
+
+print(__name__)
+
+# 当模块被直接运行时，__name__的值为'__main__'，当模块被其他模块导入时，__name__的值为模块名
+if __name__ == 'myModule1':
+    print('这是第一个自定义模块的入口')
+
+```
+
+这种做法的用途包括：
+
+测试：可以在模块中添加一些测试代码，并确保这些代码只有在模块被直接运行时才会执行，而在模块被导入时不会执行。
+
+示例代码：可以在模块中提供一些使用该模块的示例代码，并确保这些示例代码只有在模块被直接运行时才会执行。
+
+避免重复执行：可以避免在模块被导入时重复执行某些初始化代码。
+
+
+
+### 31、包
+
+**概念**：包就是项目结构中的文件夹/目录
+
+**作用**：包就是将有联系的模块放到同一个文件夹下，<span style="color:red;">并且在这个文件夹中创建一个 `__init__.py` 文件</span>，那么这个文件夹就称之为包，可以有效避免模块名称冲突问题，让结构更清晰。
+
+**创建方式**：
+
+![Python中包的创建方式](./images/Python中包的创建方式.png)
+
+123
 
 
 
