@@ -2491,7 +2491,95 @@ if __name__ == 'myModule1':
 
 ![Python中包的创建方式](./images/Python中包的创建方式.png)
 
-123
+**注意**：（<span style="color:blue;">涉及导入包的三种方式</span>）
+
+<span style="color:red;">①当我们导入包时，会首先执行 `__init__.py` 文件中的代码；此外，不建议在 `__init__.py` 文件中编写过多代码</span>
+
+在包下创建registry模块，包内文件结构如下
+
+![包内文件结构](./images/包内文件结构.png)
+
+`registry.py`
+
+```python
+def reg(call_type):
+    print("这是注册函数", call_type)
+
+# 直接调用
+reg('模块内直接调用')
+```
+
+`__init__.py`
+
+```python
+print("这是__init.py__文件")
+# __init__.py文件的主要作用： 导入这个包内的其他模块
+import my_package.registry as registry
+
+# 调用registry模块中的reg函数
+registry.reg('包内__init__.py文件调用')
+```
+
+导入包的方式
+
+```python
+# 导入包的方式一（需要在__init__.py中提前导入模块才能调用）
+import my_package
+# 调用包下的registry模块中的reg()函数
+my_package.registry.reg('导入包后调用')
+
+# 导入包的方式二（不需要在__init__.py中提前导入模块，相当于直接导入包下的模块，但是__init__.py中的代码也会执行）
+from my_package import registry
+# 调用包下的registry模块中的reg()函数
+registry.reg('导入包后调用')
+```
+
+
+
+<span style="color:red;">② `__all__` 变量：`__init__.py`中的内置变量，是一个列表，列表中的元素是要导入的模块，可以控制要引入的东西（模块、函数、类等）</span>
+
+在包下创建login模块
+
+```python
+def login():
+    print("Welcome to the login page")
+```
+
+修改`__init__.py`内容
+
+```python
+print("这是__init.py__文件")
+
+# 相当于导入列表中定义的模块
+__all__ = ['registry']
+```
+
+导入包的方式
+
+```python
+# 导入包的方式三（需要结合__all__变量控制要导入使用的模块，或在__init__.py中提前导入模块）
+from my_package import *
+# 调用包下的registry模块中的reg()函数
+registry.reg('导入包后调用')
+# 无法调用login模块中的login()函数
+# login.login()
+
+# __all__变量无法结合导入包的方式一使用！！！
+```
+
+
+
+<span style="color:red;">③包的本质依然是模块，包是可以嵌套的</span>
+
+在包中创建一个子包，文件结构如下
+
+![包的嵌套](./images/包的嵌套.png)
+
+
+
+#### 闭包
+
+
 
 
 
