@@ -1,51 +1,92 @@
 """
-闭包：函数嵌套，内部函数引用外部函数的变量，并且外部函数返回内部函数的引用
-条件要素：
-    1.函数嵌套（函数中再定义函数）
-    2.内层函数调用外层函数的局部变量
-    3.外层函数的返回值是内层函数的函数名
+装饰器：装饰器本质上是一个闭包函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。
+它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。
+装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。
 """
-def outer():        # 外层函数
-    a = 10          # 外层函数的局部变量
-    def inner():    # 内层函数
-        print(a)    # 内层函数调用外层函数的局部变量
-    return inner    # 外层函数的返回值是内层函数的函数名
+# 1.标准版装饰器
+def send():
+    print('发送邮件')
 
-# 调用方式一
-outer()()
-# 调用方式二
-f = outer()
-f()
+def outer(fn):  # 外层函数，fn是形参，但是传入的实际值是被装饰的函数名：send
+    # 既包含原有功能，又包含新功能
+    def inner():  # 内层函数
+        print('装饰器开始执行')
+        fn()  # 调用被装饰的函数
+        print('装饰器结束执行\n')
+    return inner
 
-# 带参的闭包函数（外层函数的形参也是它的局部变量）
-def param_outer(m):
-    n = 10
-    def param_inner(o):
-        print(m + n + o)
-    return param_inner
+ot = outer(send)
+ot()
+# 装饰器的原理就是将原有的函数名重新定义为以原函数为参数的闭包！
 
-param_f = param_outer(5)
-param_f(20)
 
-# 闭包的原理：函数的引用
-def func_a():
-    print("func_a")
-print(func_a) # 函数名中保存了函数所在位置的引用（内存地址）
+# 2.装饰器语法糖
+# 格式：@装饰器名
+@outer
+def funa():
+    print('函数funa执行')
 
-# 每次开启内函数都在使用同一份闭包变量
-def outer_func(m):
-    print("outer_func()函数中的值：", m)
-    def inner_func(n):
-        print("inner_func()函数中的值：", m, n)
-        return m + n
-    return inner_func
+funa()
 
-# 调用外函数，给outer_func()传值
-outer_f = outer_func(10)
-# 第一次调用内函数
-print(outer_f(20))
-# 第二次调用内函数
-print(outer_f(40))
-# 第三次调用内函数
-print(outer_f(60))
-# 总结：闭包函数可以记录外层函数的变量，并且可以多次调用
+"""
+装饰器如何处理被装饰函数的参数：为了处理被装饰函数的参数，装饰器内部通常会定义一个“包装函数”（wrapper function），
+这个包装函数会接收任意数量和类型的参数，并在内部调用原始函数。
+"""
+# 1.标准版装饰器
+def send_param(name):
+    print('发送邮件给%s' % name)
+
+def outer_param(fn):
+    def inner_param(name):
+        print('装饰器开始执行')
+        fn(name)
+        print('装饰器结束执行\n')
+    return inner_param
+
+otp = outer_param(send_param)
+otp('张三')
+
+# 2.装饰器语法糖
+@outer_param
+def funb(name):
+    print('函数funb执行', name)
+
+funb('李四')
+
+# 3.装饰器处理可变参数和关键字参数
+def outer_params(fn):
+    def inner_params(*args, **kwargs):
+        print('装饰器开始执行')
+        fn(*args, **kwargs)
+        print('装饰器结束执行\n')
+    return inner_params
+
+@outer_params
+def func(*args, **kwargs):
+    print('函数func执行', args, kwargs)
+
+
+func('张三', '李四', age=18, sex='男')
+
+"""
+多个装饰器：当一个函数被多个装饰器装饰时，所有装饰器是嵌套执行的，由内到外，离函数最近的装饰器先执行，然后外层的装饰器再执行
+"""
+def outer1(fn):
+    def inner1():
+        print('装饰器1开始执行')
+        fn()
+        print('装饰器1结束执行\n')
+    return inner1
+def outer2(fn):
+    def inner2():
+        print('装饰器2开始执行')
+        fn()
+        print('装饰器2结束执行\n')
+    return inner2
+
+@outer1
+@outer2
+def func1():
+    print('函数func1执行')
+
+func1()
