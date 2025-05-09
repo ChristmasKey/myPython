@@ -2807,4 +2807,43 @@ print(dict_b)
 
 ## 面向对象
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=29
+概念：
+
+- 面向过程
+- 面向对象
+- 类
+- 对象
+
+
+
+### 类和对象
+
+类：对一系列具有相同属性和行为的事物的统称，是一个抽象的概念，不是真实存在的事物。
+
+```python
+# 基本格式
+class 类名:
+    代码块
+```
+
+<span style="color:red;">注意</span>：类名要符合标识符规定，同时遵循**大驼峰**命名法，见名知义。
+
+
+
+对象：类的具体表现，是面向对象编程的核心。
+
+```python
+# 创建对象（又称实例化）的格式
+对象名 = 类名()
+```
+
+<span style="color:red;">注意</span>：
+
+1.先有类，再有对象
+
+2.类只有一个，对象可以有很多个
+
+
+
+https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=29
+
