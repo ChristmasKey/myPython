@@ -2809,8 +2809,8 @@ print(dict_b)
 
 概念：
 
-- 面向过程
-- 面向对象
+- **面向过程**：（手洗衣服）需要实现一个功能的时候，着重的是过程，分析出一个个步骤，并用函数实现这些步骤，再以依次去调用这些函数；
+- **面向对象**：（机洗衣服）需要实现一个功能的时候，看重的是谁能够帮我做这件事情；
 - 类
 - 对象
 
@@ -2845,5 +2845,5 @@ class 类名:
 
 
 
-https://www.bilibili.com/video/BV1rpWjevEip/?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=29
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=30
 
