@@ -3055,4 +3055,216 @@ woman._buy()  # 调用隐藏方法
 
 ### 继承
 
-https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=32
+继承：指的是多个类之间的所属关系，即子类默认继承父类的所有属性和方法。
+
+方法的重写：如果从父类继承的方法不能满足子类的需求，可以在子类中重写父类的方法，这个过程称为方法的重写，也称为方法的覆盖。
+
+<span style="color:red;">注意</span>：继承分为单继承和多继承！
+
+**语法格式**：
+
+```python
+# 单继承
+class 类名(父类名):
+    代码块
+
+# 方法的重写
+父类名.方法名(self)
+super().方法名()  # 推荐使用
+super(子类名, self).方法名
+
+# 多继承
+class 类名(父类1, 父类2, ...):
+    代码块
+```
+
+**示例代码**：
+
+```python
+"""
+继承：就是让类和类之间转变为父子关系，子类默认继承父类的属性和方法
+继承的语法：class 子类名(父类名):
+继承的作用：代码重用，减少代码冗余
+继承的分类：单继承，多继承，多层继承
+"""
+# 单继承
+class Person:  # 定义父类
+    def eat(self):
+        print("吃饭")
+
+    def sleep(self):
+        print("睡觉")
+
+class Student(Person):  # 定义子类
+    def study(self):
+        print("学习")
+
+class Teacher(Person):
+    pass  # pass关键字占位
+
+# 创建子类对象
+stu = Student()
+stu.eat()
+stu.sleep()
+stu.study()
+tch = Teacher()
+tch.eat()
+tch.sleep()
+
+
+# 多层继承：继承的传递性会让子类拥有其父类及“爷爷类”的属性和方法
+class AA:
+    def func1(self):
+        print("func1")
+
+class BB(AA):
+    def func2(self):
+        print("func2")
+
+class CC(BB):
+    def func3(self):
+        print("func3")
+
+# 创建子类对象
+cc = CC()
+cc.func1()
+cc.func2()
+cc.func3()
+
+
+"""
+方法的重写
+"""
+class Father:
+    def work(self):
+        print("写代码")
+    def fun1(self):
+        print("fun1")
+
+class Son1(Father):
+    def work(self):  # 方法重写（覆盖父类的方法）
+        print("写代码，但是不写注释")
+
+class Son2(Father):
+    def work(self):  # 方法重写（扩展父类的方法）
+        # 调用父类中的同名方法
+        # Father.work(self)
+        super().work()
+        # super(Son2, self).work()
+
+        super().fun1()  # 通过super()也可以调用父类中的其他方法
+
+        print("写代码，但是不写注释，也不写文档")
+
+# 创建子类对象
+son1 = Son1()
+son1.work()
+son2 = Son2()
+son2.work()
+
+
+"""
+多继承：子类可以拥有多个父类，并且具有所有父类的属性和方法
+"""
+class A:
+    def func1(self):
+        print("func1")
+
+class B:
+    def func2(self):
+        print("func2")
+
+class C(A, B):
+    def func3(self):
+        print("func3")
+
+# 创建子类对象
+cc = C()
+cc.func1()
+cc.func2()
+cc.func3()
+
+# 当不同父类中存在同名方法时，调用顺序根据子类括号中父类排序（搜索顺序）确定
+class A1:
+    def func1(self):
+        print("A1.func1")
+class B1:
+    def func1(self):
+        print("B1.func1")
+
+class C1(A1, B1):
+    pass
+
+class C2(B1, A1):
+    pass
+
+# 创建子类对象
+c1 = C1()
+c1.func1()  # A1.func1
+c2 = C2()
+c2.func1()  # B1.func1
+
+"""
+方法的搜索顺序：Python3中的内置属性__mro__可以查看方法搜索顺序
+"""
+print(C1.__mro__)  # (<class '__main__.C1'>, <class '__main__.A1'>, <class '__main__.B1'>, <class 'object'>)
+print(C2.__mro__)  # (<class '__main__.C2'>, <class '__main__.B1'>, <class '__main__.A1'>, <class 'object'>)
+```
+
+拓展：
+
+> pass 是 Python 中的一个关键字，它的作用是在语法上需要有一些语句，但实际上却又不需要执行任何操作时使用。它通常用于以下几种情况：
+>
+> 1. 在函数或类的定义中，当你还没有想好应该写什么代码时，可以使用 pass 来占位，这样你可以先定义好函数或类的结构，以后再来填充具体的实现代码。
+>
+> 2. 在循环或条件语句中，当你需要暂时忽略某些条件或循环迭代时，可以使用 pass 来避免语法错误。
+>
+> 3. 在多行字符串中，pass 可以用来表示字符串的结束。
+
+
+
+#### 新式类写法
+
+派生类：子类中有不同于父类的属性或方法时，这个子类就是派生类
+
+```python
+class A:
+    pass
+
+# 非派生类
+class B:
+    pass
+
+# 派生类
+class C:
+    def fun1(self):
+        print("some text")
+```
+
+经典类：不由任意内置类型派生出的类
+
+```python
+# 经典类
+class A:
+    pass
+
+class A():
+    pass
+```
+
+新式类：继承了object类的类或者该类的子类
+
+<span style="color:red;">object类是所有类的基类（顶级父类），提供了一些内置的属性和方法</span>
+
+<span style="color:red;">Python3中如果一个类没有声明任何父类，则默认继承object类，因此Python3中都是新式类</span>
+
+```python
+class A(object):
+    pass
+```
+
+
+
+### 多态
+
+https://www.bilibili.com/video/BV1rpWjevEip?spm_id_from=333.788.player.switch&vd_source=71b23ebd2cd9db8c137e17cdd381c618&p=34
